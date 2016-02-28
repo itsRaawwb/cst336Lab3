@@ -3,7 +3,7 @@
     <head>
         <title> </title>
     </head>
-    <body>
+    <body class="b1">
         <form action="game.php" method="POST">
             <div>
                 <label>Player 1:</label><input type="text" name ="p1" />

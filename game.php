@@ -1,33 +1,103 @@
 <?php
+    function main(){
+        $deck = array();
+        $deck = createDeck($deck);
+        
+        $player1 = ["imageName" => "",
+                    "name" => $_POST["p1"],
+                    "card1" => null,
+                    "card2" => null,
+                    "card3" => null,
+                    "card4" => null,
+                    "card5" => null,
+                    "card6" => null];
+                
+        $player2 = ["imageName" => "",
+                    "name" => $_POST["p2"],
+                    "card1" => null,
+                    "card2" => null,
+                    "card3" => null,
+                    "card4" => null,
+                    "card5" => null,
+                    "card6" => null];
+                    
+        $player3 = ["imageName" => "",
+                    "name" => $_POST["p3"],
+                    "card1" => null,
+                    "card2" => null,
+                    "card3" => null,
+                    "card4" => null,
+                    "card5" => null,
+                    "card6" => null];
+                    
+        $player4 = ["imageName" => "",
+                    "name" => $_POST["p4"],
+                    "card1" => null,
+                    "card2" => null,
+                    "card3" => null,
+                    "card4" => null,
+                    "card5" => null,
+                    "card6" => null];
+        $table = [$player1, $player2, $player3, $player4];            
+                    
+        //Deal cards
+        dealCards($table, $deck);
+                    
 
-
-    $player1 = ["imageName" => "",
-                "name" => $_POST["p1"]];
-                
-    $player2 = ["imageName" => "",
-                "name" => $_POST["p2"]];
-                
-    $player3 = ["imageName" => "",
-                "name" => $_POST["p3"]];
-                
-    $player4 = ["imageName" => "",
-                "name" => $_POST["p4"]];
-                
-    $table = [$player1, $player2, $player3, $player4];
+    }
     
+    //this function will create the deck and shuffle it.
+    function createDeck($deck){
+        for($i = 0; $i < 52; $i++){
+            $deck[$i] = $i;
+        }
+        
+        shuffle($deck);
+        return($deck);
+    }
     
-
+    //this array takes in 2 arrays, one containing the players; the other is the deck
+    function dealCards($table, $deck){
+        for($i = 0; $i < 4; $i++){
+            $table[$i[1]] = array_pop($i);
+        }
+    }
+    
+    //this function will print the table;
+    function printTable($table){
+            //display table
+        echo '<div>';
+        echo '<table class="gameTable">';
+            //header row
+            echo '<tr>';
+                echo '<td>';
+                echo '';
+                echo '</td>';
+                    
+                echo '<td>';
+                echo '';
+                echo '</td>';
+                    
+                echo '<td>';
+                echo '';
+                echo '</td>';
+            echo '</tr>';
+        echo '</table>';
+        echo '</div>';
+    }
+    
 
 ?>
 
 <!DOCTYPE html>
 <html>
     <head>
-        <title> </title>
+        <title>Play Some Silverjack!</title>
+        <link rel="stylesheet" type="css" href="css/main.css">
     </head>
     <body>
         <?php
-            var_dump($table);
+            main();
         ?>
         <!--<a href="index.php">Play again!</a>-->
         <form action="game.php" method="POST">

@@ -10,3 +10,4 @@ display winners
 
 display pictures for players randomly
 
+css
