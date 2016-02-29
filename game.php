@@ -4,7 +4,7 @@
         $deck = array();
         $deck = createDeck($deck);
         //an array that contains whether the corresponding player is a winner.
-        $winningPlayer = 0;
+        $winningPlayers = [0,0,0,0];
         
         $player1 = ["imageName" => "",
                     "name" => $_POST["p1"],
@@ -75,17 +75,30 @@
             array_pop($deck);
         }
         
-        //****Check for winner************************************************
-        //this will return a player number.
-        //For instance, if player 1 wins, then this function returns the number 1.
+        //Check for winner
+        //this will return an array containing winners.
+        //For instance, winners will have: 1; losers: 0.
      
-        $winningPlayer = checkWin($player1["points"],$player2["points"],$player3["points"],$player4["points"]);
+        $winningPlayers = checkWin($player1["points"],$player2["points"],$player3["points"],$player4["points"]);
+        for($i = 0; $i < 4; $i++){
+            echo "Player ".$i+1; //echo doesnt like the $i+1, so i separated by a space.
+            echo" ";
+            if($winningPlayers[$i] == 1){
+                echo "WINS";
+            }
+            else{
+                echo "lost";
+            }
+            echo "<br>";
+        }
         
-        echo "winner: player ". $winningPlayer;
         //****Print this shit out*********************************************
-        
     }
     
+    //**************************************************************************
+    //**************************************************************************
+    //*******************************functions**********************************
+    //**************************************************************************
     //this function will create the deck and shuffle it.
     function createDeck($deck){
         for($i = 0; $i < 52; $i++){
@@ -374,14 +387,19 @@
         $points = [$p1,$p2,$p3,$p4];
         $max = 0;
         $index = 0;
+        $winners=[0,0,0,0];
         
         for ($i=0; $i< 4; $i++){
             if ($points[$i] <= 42 && $points[$i]>$max){
                 $max = $points[$i];
+                
+                $winners[$index] = 0;
+                
                 $index = $i;
+                $winners[$index] = 1;
             }
         }
-        return $index+1;
+        return $winners;
     }
     
     //this function will print the table;
