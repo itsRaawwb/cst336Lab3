@@ -195,9 +195,9 @@
         //temp[0] holds point value, temp[2] holds the url for the image
         $temp = array();
         $player1["winner"] = $winningTables[0];
-        $player1["winner"] = $winningTables[0];
-        $player1["winner"] = $winningTables[0];
-        $player1["winner"] = $winningTables[0];
+        $player2["winner"] = $winningTables[1];
+        $player3["winner"] = $winningTables[2];
+        $player4["winner"] = $winningTables[3];
             //display table
             
             
@@ -227,27 +227,33 @@
                 echo '</td>';
                 
                 echo '<td>';
-                echo $player1["card2"];
+                $temp = getCardValue($player1["card2"]);
+                echo $temp[2];
                 echo '</td>';
                 
                 echo '<td>';
-                echo $player1["card3"];
+                $temp = getCardValue($player1["card2"]);
+                echo $temp[2];
                 echo '</td>';
                 
                 echo '<td>';
-                echo $player1["card4"];
+                $temp = getCardValue($player1["card3"]);
+                echo $temp[2];
                 echo '</td>';
                 
                 echo '<td>';
-                echo $player1["card5"];
+                $temp = getCardValue($player1["card4"]);
+                echo $temp[2];
                 echo '</td>';
                 
                 echo '<td>';
-                echo $player1["card6"];
+                $temp = getCardValue($player1["card5"]);
+                echo $temp[2];
                 echo '</td>';
                 
                 echo '<td>';
-                echo $player1["points"];
+                $temp = getCardValue($player1["card6"]);
+                echo $temp[2];
                 echo '</td>';
                 
                 echo '<td>';
@@ -264,6 +270,49 @@
             echo '<tr>';
                 echo '<td>';
                 echo "<img width = 75 src = 'assets/faces/chihua.jpg' />";
+                
+                echo '<td>';
+                $temp = getCardValue($player2["card1"]);
+                echo $temp[2];
+                echo '</td>';
+                
+                echo '<td>';
+                $temp = getCardValue($player2["card2"]);
+                echo $temp[2];
+                echo '</td>';
+                
+                echo '<td>';
+                $temp = getCardValue($player2["card2"]);
+                echo $temp[2];
+                echo '</td>';
+                
+                echo '<td>';
+                $temp = getCardValue($player2["card3"]);
+                echo $temp[2];
+                echo '</td>';
+                
+                echo '<td>';
+                $temp = getCardValue($player2["card4"]);
+                echo $temp[2];
+                echo '</td>';
+                
+                echo '<td>';
+                $temp = getCardValue($player2["card5"]);
+                echo $temp[2];
+                echo '</td>';
+                
+                echo '<td>';
+                $temp = getCardValue($player2["card6"]);
+                echo $temp[2];
+                echo '</td>';
+                
+                echo '<td>';
+                if($player2["winner"] == 1){
+                    echo "Winner";
+                }
+                else{
+                    echo "Loser";
+                }
                 echo '</td>';
             echo '</tr>'; // end second player
             
@@ -271,6 +320,49 @@
             echo '<tr>';
                 echo '<td>';
                 echo "<img width = 75 src = 'assets/faces/GSD.jpg' />";
+                
+                echo '<td>';
+                $temp = getCardValue($player3["card1"]);
+                echo $temp[2];
+                echo '</td>';
+                
+                echo '<td>';
+                $temp = getCardValue($player3["card2"]);
+                echo $temp[2];
+                echo '</td>';
+                
+                echo '<td>';
+                $temp = getCardValue($player3["card2"]);
+                echo $temp[2];
+                echo '</td>';
+                
+                echo '<td>';
+                $temp = getCardValue($player3["card3"]);
+                echo $temp[2];
+                echo '</td>';
+                
+                echo '<td>';
+                $temp = getCardValue($player3["card4"]);
+                echo $temp[2];
+                echo '</td>';
+                
+                echo '<td>';
+                $temp = getCardValue($player3["card5"]);
+                echo $temp[2];
+                echo '</td>';
+                
+                echo '<td>';
+                $temp = getCardValue($player3["card6"]);
+                echo $temp[2];
+                echo '</td>';
+                
+                echo '<td>';
+                if($player3["winner"] == 1){
+                    echo "Winner";
+                }
+                else{
+                    echo "Loser";
+                }
                 echo '</td>';
             echo '</tr>'; // end third player
             
@@ -278,6 +370,49 @@
             echo '<tr>';
                 echo '<td>';
                 echo "<img width = 75 src = 'assets/faces/lab.jpg' />";
+                
+                echo '<td>';
+                $temp = getCardValue($player4["card1"]);
+                echo $temp[2];
+                echo '</td>';
+                
+                echo '<td>';
+                $temp = getCardValue($player4["card2"]);
+                echo $temp[2];
+                echo '</td>';
+                
+                echo '<td>';
+                $temp = getCardValue($player4["card2"]);
+                echo $temp[2];
+                echo '</td>';
+                
+                echo '<td>';
+                $temp = getCardValue($player4["card3"]);
+                echo $temp[2];
+                echo '</td>';
+                
+                echo '<td>';
+                $temp = getCardValue($player4["card4"]);
+                echo $temp[2];
+                echo '</td>';
+                
+                echo '<td>';
+                $temp = getCardValue($player4["card5"]);
+                echo $temp[2];
+                echo '</td>';
+                
+                echo '<td>';
+                $temp = getCardValue($player4["card6"]);
+                echo $temp[2];
+                echo '</td>';
+                
+                echo '<td>';
+                if($player4["winner"] == 1){
+                    echo "Winner";
+                }
+                else{
+                    echo "Loser";
+                }
                 echo '</td>';
             echo '</tr>'; // end fourth player
         echo '</table>';
