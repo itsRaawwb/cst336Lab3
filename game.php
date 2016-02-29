@@ -224,6 +224,34 @@
                 echo '<td>';
                 echo "<img width = 75 src = 'assets/faces/bulldog.jpg' />";
                 echo '</td>';
+                
+                echo '<td>';
+                echo $player1["card1"];
+                echo '</td>';
+                
+                echo '<td>';
+                echo $player1["card2"];
+                echo '</td>';
+                
+                echo '<td>';
+                echo $player1["card3"];
+                echo '</td>';
+                
+                echo '<td>';
+                echo $player1["card4"];
+                echo '</td>';
+                
+                echo '<td>';
+                echo $player1["card5"];
+                echo '</td>';
+                
+                echo '<td>';
+                echo $player1["card6"];
+                echo '</td>';
+                
+                echo '<td>';
+                echo $player1[points];
+                echo '</td>';
             echo '</tr>'; // end first player
             
             //second player
@@ -251,11 +279,13 @@
     }
     
     
+    
     function getCardValue($card){
         switch($card){
             //1's
             case '1':
                 $cardValue=[1,"AoS"];
+                $cardImage="<img width = 75 src = 'assets/spades/1.png' />";
                 return($cardValue);
                 break;
             case 2:
