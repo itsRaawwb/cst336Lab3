@@ -81,8 +81,9 @@
      
         $winningPlayers = checkWin($player1["points"],$player2["points"],$player3["points"],$player4["points"]);
         for($i = 0; $i < 4; $i++){
-            echo "Player ".$i+1; //echo doesnt like the $i+1, so i separated by a space.
-            echo" ";
+            echo "Player ";
+            echo $i+1; //echo doesnt like the $i+1, so i separated by a space.
+            echo " ";
             if($winningPlayers[$i] == 1){
                 echo "WINS";
             }
@@ -386,17 +387,19 @@
     function checkWin($p1,$p2,$p3,$p4){
         $points = [$p1,$p2,$p3,$p4];
         $max = 0;
-        $index = 0;
         $winners=[0,0,0,0];
         
         for ($i=0; $i< 4; $i++){
-            if ($points[$i] <= 42 && $points[$i]>$max){
-                $max = $points[$i];
-                
-                $winners[$index] = 0;
-                
-                $index = $i;
-                $winners[$index] = 1;
+            if ($points[$i] <= 42 && $points[$i]>=$max){
+                if($points[$i]==$max){
+                    $winners[$i] = 1;
+                }
+                else{
+                    //set new max
+                    $max = $points[$i];
+                    $winners = [0,0,0,0];
+                    $winners[$i] = 1;
+                }
             }
         }
         return $winners;
