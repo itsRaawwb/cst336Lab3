@@ -99,22 +99,8 @@
         //Check for winner
         //this will return an array containing winners.
         //For instance, winners will have: 1; losers: 0.
-     
-        $winningPlayers = checkWin($player1["points"],$player2["points"],$player3["points"],$player4["points"]);
-        for($i = 0; $i < 4; $i++){
-            echo "Player ";
-            echo $i+1; //echo doesnt like the $i+1, so i separated by a space.
-            echo " ";
-            if($winningPlayers[$i] == 1){
-                echo "WINS";
-            }
-            else{
-                echo "lost";
-            }
-            echo "<br>";
-        }
         
-        printTable($player1, $player2, $player3, $player4);
+        printTable($player1, $player2, $player3, $player4, $winningPlayers);
         //****Print this shit out*********************************************
     } // End main
     
@@ -203,13 +189,18 @@
     }
     
     //this function will print the table;
-    function printTable($player1, $player2, $player3, $player4){
+    function printTable($player1, $player2, $player3, $player4, $winningTables){
         
         //temp array to hold cards for printing
         //temp[0] holds point value, temp[2] holds the url for the image
         $temp = array();
-            //display table
-            
+        $player1["winner"] = $winningTables[0];
+        $player2["winner"] = $winningTables[1];
+        $player3["winner"] = $winningTables[2];
+        $player4["winner"] = $winningTables[3];
+        
+        
+        //display table
             
         echo '<div>';
         echo '<table border ="1" class="gameTable">';
@@ -233,7 +224,7 @@
                 
                 echo '<td>';
                 $temp = getCardValue($player1["card1"]);
-                echo $player1["card1"];
+                echo $temp[2];
                 echo '</td>';
                 
                 echo '<td>';
@@ -258,6 +249,15 @@
                 
                 echo '<td>';
                 echo $player1["points"];
+                echo '</td>';
+                
+                echo '<td>';
+                if($player1["winner"] == 1){
+                    echo "Winner";
+                }
+                else{
+                    echo "Loser";
+                }
                 echo '</td>';
             echo '</tr>'; // end first player
             
