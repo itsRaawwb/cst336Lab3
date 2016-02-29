@@ -204,7 +204,13 @@
     
     //this function will print the table;
     function printTable($player1, $player2, $player3, $player4){
+        
+        //temp array to hold cards for printing
+        //temp[0] holds point value, temp[2] holds the url for the image
+        $temp = array();
             //display table
+            
+            
         echo '<div>';
         echo '<table border ="1" class="gameTable">';
             //header row
@@ -226,6 +232,7 @@
                 echo '</td>';
                 
                 echo '<td>';
+                $temp = getCardValue($player1["card1"]);
                 echo $player1["card1"];
                 echo '</td>';
                 
@@ -250,7 +257,7 @@
                 echo '</td>';
                 
                 echo '<td>';
-                echo $player1[points];
+                echo $player1["points"];
                 echo '</td>';
             echo '</tr>'; // end first player
             
@@ -284,8 +291,7 @@
         switch($card){
             //1's
             case '1':
-                $cardValue=[1,"AoS"];
-                $cardImage="<img width = 75 src = 'assets/spades/1.png' />";
+                $cardValue=[1,"AoS","<img width = 75 src = 'assets/cards/spades/1.png' />"];
                 return($cardValue);
                 break;
             case 2:
