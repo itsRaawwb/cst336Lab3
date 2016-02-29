@@ -114,7 +114,7 @@
             echo "<br>";
         }
         
-        printTable();
+        printTable($player1, $player2, $player3, $player4);
         //****Print this shit out*********************************************
     } // End main
     
@@ -203,7 +203,7 @@
     }
     
     //this function will print the table;
-    function printTable(){
+    function printTable($player1, $player2, $player3, $player4){
             //display table
         echo '<div>';
         echo '<table border ="1" class="gameTable">';
