@@ -1,3 +1,24 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Play Some Silverjack!</title>
+        <link rel="stylesheet" type="css" href="css/main.css">
+    </head>
+    <body>
+        <?php
+            main();
+        ?>
+        <!--<a href="index.php">Play again!</a>-->
+        <form action="game.php" method="POST">
+            <input type="hidden" name="p1" value="<?=  $_POST["p1"] ?>" />
+            <input type="hidden" name="p2" value="<?=  $_POST["p2"] ?>" />
+            <input type="hidden" name="p3" value="<?=  $_POST["p3"] ?>" />
+            <input type="hidden" name="p4" value="<?=  $_POST["p4"] ?>" />
+            <input type="submit" value="Play again?" />
+        </form>
+    </body>
+</html>
+
 <?php   
     
     function main(){
@@ -93,8 +114,9 @@
             echo "<br>";
         }
         
+        printTable();
         //****Print this shit out*********************************************
-    }
+    } // End main
     
     //**************************************************************************
     //**************************************************************************
@@ -112,6 +134,7 @@
     
     //this array takes in 2 arrays, one containing the players; the other is the deck
     function dealCards($player, $deck){
+        global $points;
         //algorithm checks a person's hand before dealing more cards
         $temp = array();
         
@@ -153,11 +176,80 @@
             $player["popCount"]++;
         }
         
-        echo $player["points"]."<br><br>";
+        $points = $player["points"]; // Points that player gets
         
         return($player);
 
     }
+    function checkWin($p1,$p2,$p3,$p4){
+        $points = [$p1,$p2,$p3,$p4];
+        $max = 0;
+        $winners=[0,0,0,0];
+        
+        for ($i=0; $i< 4; $i++){
+            if ($points[$i] <= 42 && $points[$i]>=$max){
+                if($points[$i]==$max){
+                    $winners[$i] = 1;
+                }
+                else{
+                    //set new max
+                    $max = $points[$i];
+                    $winners = [0,0,0,0];
+                    $winners[$i] = 1;
+                }
+            }
+        }
+        return $winners;
+    }
+    
+    //this function will print the table;
+    function printTable(){
+            //display table
+        echo '<div>';
+        echo '<table border ="1" class="gameTable">';
+            //header row
+            echo '<tr>';
+                echo '<td> Players </td>';
+                echo '<td> Card 1 </td>';
+                echo '<td> Card 2 </td>';
+                echo '<td> Card 3 </td>';
+                echo '<td> Card 4 </td>';
+                echo '<td> Card 5 </td>';
+                echo '<td> Card 6 </td>';
+                echo '<td> Total </td>';
+                echo '<td> Winner </td>';
+            echo '</tr>';
+            //first player
+            echo '<tr>';
+                echo '<td>';
+                echo "<img width = 75 src = 'assets/faces/bulldog.jpg' />";
+                echo '</td>';
+            echo '</tr>'; // end first player
+            
+            //second player
+            echo '<tr>';
+                echo '<td>';
+                echo "<img width = 75 src = 'assets/faces/chihua.jpg' />";
+                echo '</td>';
+            echo '</tr>'; // end second player
+            
+            //third player
+            echo '<tr>';
+                echo '<td>';
+                echo "<img width = 75 src = 'assets/faces/GSD.jpg' />";
+                echo '</td>';
+            echo '</tr>'; // end third player
+            
+            //fourth player
+            echo '<tr>';
+                echo '<td>';
+                echo "<img width = 75 src = 'assets/faces/lab.jpg' />";
+                echo '</td>';
+            echo '</tr>'; // end fourth player
+        echo '</table>';
+        echo '</div>';
+    }
+    
     
     function getCardValue($card){
         switch($card){
@@ -384,70 +476,5 @@
                 break;
         }
     }
-    function checkWin($p1,$p2,$p3,$p4){
-        $points = [$p1,$p2,$p3,$p4];
-        $max = 0;
-        $winners=[0,0,0,0];
-        
-        for ($i=0; $i< 4; $i++){
-            if ($points[$i] <= 42 && $points[$i]>=$max){
-                if($points[$i]==$max){
-                    $winners[$i] = 1;
-                }
-                else{
-                    //set new max
-                    $max = $points[$i];
-                    $winners = [0,0,0,0];
-                    $winners[$i] = 1;
-                }
-            }
-        }
-        return $winners;
-    }
-    
-    //this function will print the table;
-    function printTable($table){
-            //display table
-        echo '<div>';
-        echo '<table class="gameTable">';
-            //header row
-            echo '<tr>';
-                echo '<td>';
-                echo '';
-                echo '</td>';
-                    
-                echo '<td>';
-                echo '';
-                echo '</td>';
-                    
-                echo '<td>';
-                echo '';
-                echo '</td>';
-            echo '</tr>';
-        echo '</table>';
-        echo '</div>';
-    }
-    
 
 ?>
-
-<!DOCTYPE html>
-<html>
-    <head>
-        <title>Play Some Silverjack!</title>
-        <link rel="stylesheet" type="css" href="css/main.css">
-    </head>
-    <body>
-        <?php
-            main();
-        ?>
-        <!--<a href="index.php">Play again!</a>-->
-        <form action="game.php" method="POST">
-            <input type="hidden" name="p1" value="<?=  $_POST["p1"] ?>" />
-            <input type="hidden" name="p2" value="<?=  $_POST["p2"] ?>" />
-            <input type="hidden" name="p3" value="<?=  $_POST["p3"] ?>" />
-            <input type="hidden" name="p4" value="<?=  $_POST["p4"] ?>" />
-            <input type="submit" value="Play again?" />
-        </form>
-    </body>
-</html>
