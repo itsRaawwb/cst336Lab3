@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title> </title>
+        <title>Come Play Silverjack!</title>
+        <link rel="stylesheet" type="css" href="css/main.css">
     </head>
     <body class="b1">
         <form action="game.php" method="POST">

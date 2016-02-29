@@ -3,6 +3,10 @@
         $deck = array();
         $deck = createDeck($deck);
         
+        for($i = 0; $i < 52; $i++){
+            echo $deck[$i].'<br>';
+        }
+        
         $player1 = ["imageName" => "",
                     "name" => $_POST["p1"],
                     "card1" => null,
@@ -53,14 +57,32 @@
         }
         
         shuffle($deck);
+        
+        
         return($deck);
     }
     
     //this array takes in 2 arrays, one containing the players; the other is the deck
     function dealCards($table, $deck){
         for($i = 0; $i < 4; $i++){
-            $table[$i[1]] = array_pop($i);
+            $table[$i[2]] = array_pop($deck);
         }
+        for($i = 0; $i < 4; $i++){
+            $table[$i[3]] = array_pop($deck);
+        }
+        for($i = 0; $i < 4; $i++){
+            $table[$i[4]] = array_pop($deck);
+        }
+        for($i = 0; $i < 4; $i++){
+            $table[$i[5]] = array_pop($deck);
+        }
+        for($i = 0; $i < 4; $i++){
+            $table[$i[6]] = array_pop($deck);
+        }
+        for($i = 0; $i < 4; $i++){
+            $table[$i[7]] = array_pop($deck);
+        }
+        
     }
     
     //this function will print the table;
