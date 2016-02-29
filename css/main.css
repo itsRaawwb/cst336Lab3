@@ -1,5 +1,6 @@
 .b1{
     background-image: url(../assets/tablegreen.jpg);
+    background-size:20%;
     background-repeat: repeat-x;
     background-repeat: repeat-y;
 }

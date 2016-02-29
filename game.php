@@ -53,7 +53,7 @@
     //this function will create the deck and shuffle it.
     function createDeck($deck){
         for($i = 0; $i < 52; $i++){
-            $deck[] = $i;
+            $deck[$i] = $i;
         }
         
         shuffle($deck);
