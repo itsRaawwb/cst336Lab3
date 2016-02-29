@@ -1,14 +1,10 @@
-<?php
-    //global array 'deck'
-    $deck = array();
-
+<?php   
+    
     function main(){
-        
+        $deck = array();
         $deck = createDeck($deck);
-        
-        // for($i = 0; $i < 52; $i++){
-        //     echo $deck[$i].'<br>';
-        // }
+        //an array that contains whether the corresponding player is a winner.
+        $winningPlayer = 0;
         
         $player1 = ["imageName" => "",
                     "name" => $_POST["p1"],
@@ -18,7 +14,9 @@
                     "card4" => null,
                     "card5" => null,
                     "card6" => null,
-                    "points" => 0];
+                    "points" => 0,
+                    "popCount" => 0,
+                    "winner" => null];
                 
         $player2 = ["imageName" => "",
                     "name" => $_POST["p2"],
@@ -28,7 +26,9 @@
                     "card4" => null,
                     "card5" => null,
                     "card6" => null,
-                    "points" => 0];
+                    "points" => 0,
+                    "popCount" => 0,
+                    "winner" => null];
                     
         $player3 = ["imageName" => "",
                     "name" => $_POST["p3"],
@@ -38,7 +38,9 @@
                     "card4" => null,
                     "card5" => null,
                     "card6" => null,
-                    "points" => 0];
+                    "points" => 0,
+                    "popCount" => 0,
+                    "winner" => null];
                     
         $player4 = ["imageName" => "",
                     "name" => $_POST["p4"],
@@ -48,13 +50,40 @@
                     "card4" => null,
                     "card5" => null,
                     "card6" => null,
-                    "points" => 0];
+                    "points" => 0,
+                    "popCount" => 0,
+                    "winner" => null];
         
         //Deal cards
         $player1 = dealCards($player1, $deck);
+        for($i = 0; $i < $player1["popCount"]; $i++){
+            array_pop($deck);
+        }
+        
         $player2 = dealCards($player2, $deck);
+        for($i = 0; $i < $player2["popCount"]; $i++){
+            array_pop($deck);
+        }
+       
         $player3 = dealCards($player3, $deck);
+        for($i = 0; $i < $player3["popCount"]; $i++){
+            array_pop($deck);
+        }
+       
         $player4 = dealCards($player4, $deck);
+        for($i = 0; $i < $player4["popCount"]; $i++){
+            array_pop($deck);
+        }
+        
+        //****Check for winner************************************************
+        //this will return a player number.
+        //For instance, if player 1 wins, then this function returns the number 1.
+     
+        $winningPlayer = checkWin($player1["points"],$player2["points"],$player3["points"],$player4["points"]);
+        
+        echo "winner: player ". $winningPlayer;
+        //****Print this shit out*********************************************
+        
     }
     
     //this function will create the deck and shuffle it.
@@ -69,33 +98,48 @@
     
     //this array takes in 2 arrays, one containing the players; the other is the deck
     function dealCards($player, $deck){
-        //algorithm checks a person's deck before dealing more cards
+        //algorithm checks a person's hand before dealing more cards
+        $temp = array();
         
-        if($player["points"] < 30 ){
+        if($player["points"] < 35 ){
             $player["card1"] = array_pop($deck);
+            $temp = getCardValue($player["card1"]);
+            $player["points"] += $temp[0];
+            $player["popCount"]++;
         }
-        if($player["points"] < 30 ){
+
+        if($player["points"] < 35 ){
             $player["card2"] = array_pop($deck);
+            $temp = getCardValue($player["card2"]);
+            $player["points"] += $temp[0];
+            $player["popCount"]++;
         }
-        if($player["points"] < 30 ){
+        if($player["points"] < 35 ){
             $player["card3"] = array_pop($deck);
+            $temp = getCardValue($player["card3"]);
+            $player["points"] += $temp[0];
+            $player["popCount"]++;
         }
-        if($player["points"] < 30 ){
+        if($player["points"] < 35 ){
             $player["card4"] = array_pop($deck);
+            $temp = getCardValue($player["card4"]);
+            $player["points"] += $temp[0];
+            $player["popCount"]++;
         }
-        if($player["points"] < 30 ){
+        if($player["points"] < 35 ){
             $player["card5"] = array_pop($deck);
+            $temp = getCardValue($player["card5"]);
+            $player["points"] += $temp[0];
+            $player["popCount"]++;
         }
-        if($player["points"] < 30 ){
+        if($player["points"] < 35 ){
             $player["card6"] = array_pop($deck);
+            $temp = getCardValue($player["card6"]);
+            $player["points"] += $temp[0];
+            $player["popCount"]++;
         }
         
-        echo $player["card1"]."<br>";
-        echo $player["card2"]."<br>";
-        echo $player["card3"]."<br>";
-        echo $player["card4"]."<br>";
-        echo $player["card5"]."<br>";
-        echo $player["card6"]."<br>";
+        echo $player["points"]."<br><br>";
         
         return($player);
 
@@ -108,11 +152,11 @@
                 $cardValue=[1,"AoS"];
                 return($cardValue);
                 break;
-            case '2':
+            case 2:
                 $cardValue=[1,"AoH"];
                 return($cardValue);
                 break;
-            case '3':
+            case 2:
                 $cardValue=[1,"AoD"];
                 return($cardValue);
                 break;
@@ -325,6 +369,19 @@
                 return($cardValue);
                 break;
         }
+    }
+    function checkWin($p1,$p2,$p3,$p4){
+        $points = [$p1,$p2,$p3,$p4];
+        $max = 0;
+        $index = 0;
+        
+        for ($i=0; $i< 4; $i++){
+            if ($points[$i] <= 42 && $points[$i]>$max){
+                $max = $points[$i];
+                $index = $i;
+            }
+        }
+        return $index+1;
     }
     
     //this function will print the table;
